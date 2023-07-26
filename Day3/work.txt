@@ -1,0 +1,86 @@
+
+Falsy
+  false
+  0,-0 and 0n
+  "", ''  (empty string)
+  null, undefined, NaN
+eg:
+if (arr){    //if arr is truthy then if condition else
+console.log("array is present !")}
+else{
+console.log(":(");
+}
+
+function add(x,y){
+ x=x||0;
+y=y||0;
+return x +  y;
+}
+
+----------------------
+
+rest vs spread
+
+-->rest used with func arguments  or n
+-->spread is used with reference
+
+_________________________________________
+
+var emp={id:1001, name:"abc"};
+undefined
+var dept={dname:'IT',id:1002};
+undefined
+var merge={emp, dept};
+undefined
+merge;
+{emp: {…}, dept: {…}}    //nested object
+
+------------------------------------------------
+
+1.var (if declared inside function, scope function level,
+if declared outside at top (window )--global)
+2.let ( scope within the loop --- block level scope   )
+3.not mentioning anything  ---- accidental global 
+
+----------------------------------------------
+Var can be declared multiple times
+let is block level scoped and cannot be initialized multiple times
+const- for fixed, and assigning only once 
+------------------------------
+
+function types : 4 types
+arrow func //doesn't perform hoisting, pure, 'this' doesn't work in this
+name func
+anonymous func/ function expression
+name function expression
+
+
+--------------------------------------------------
+function calc(){
+    var add=function(x,y){
+        return x+y;
+    }
+    var sub= function(x,y){
+        return x-y;
+    }
+    return [add, sub];
+}
+undefined
+calc()[1](2,3);
+-1
+calc()[0](2,3);
+5
+-----------------------------------------------
+//using object 
+function calc(){
+    var add=function(x,y){
+        return x+y;
+    }
+    var sub= function(x,y){
+        return x-y;
+    }
+    return{add, sub};
+}
+undefined
+calc().sub(3,2);
+1
