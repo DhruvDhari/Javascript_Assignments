@@ -1,4 +1,4 @@
-let a=function calc(){
+function calc(){
     let add=function(x,y){
         return x+y;
     }
@@ -7,8 +7,8 @@ let a=function calc(){
     }
 }
 
-// let a=calc().add(1,4);
-// let b=calc().sub(5,2);
+let a=calc().add(1,4);
+let b=calc().sub(5,2);
 
-// console.log(a);
-// console.log(b);
+console.log(a);
+console.log(b);
