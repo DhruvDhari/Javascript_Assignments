@@ -6,21 +6,33 @@
 // )
 //  function bindevents(){
 // document.getElementById('clickme').addEventListener('click',()=>{
-//     alert('Mahesh Dalle🤟🤟🤟');
+//     alert('hi');
 // })
 
 //  }
 
 import productOperations from "../services/product_operations.js";
 
-// const productOperations={
-//   pizzas:[],
-//   carts:[],
-//   addToCart(product){
-//     this.carts.push(product);
-//   },
+function addpizzaToCart(){
+  const pizzaId=this.getAttribute('product-id');
+  console.log('current button clicked ',pizzaId);
+  const pizza =productOperations.searchProducts(pizzaId);
+  console.log("pizza tumne chuna h woh :",pizza);
+  pizza.isAddedInCart= !pizza.isAddedInCart;
+  if(pizza.isAddedInCart){
+    this.className='btn btn-danger';
+    this.innerText='Remove from Cart';
+    productOperations.addToCart(pizza);
+  }
+  else{
+    this.className='btn btn-primary';
+    this.innerText="Add in Cart";
+    productOperations.removeFromCart(pizza);
 
-// }
+  }
+  // printCart();
+  
+}
 
 // async function loadPizzas(){
 //     const pizza =await productOperations.loadProducts();
@@ -70,12 +82,11 @@ function preparePizzaCard(pizza){
   const colDiv = document.createElement('div');
   colDiv.className = 'col-4';
   const cardDiv = document.createElement('div');
-  cardDiv.className = 'card';
+  cardDiv.classList = 'card m-2';
   cardDiv.style = "width: 18rem;";
   colDiv.appendChild(cardDiv);
   const img = document.createElement('img');
-  img.src = pizza.price;
-  console.log("url :",pizza.price);
+  img.src = pizza.url;
   img.className = 'card-img-top';
   cardDiv.appendChild(img);
   const cardBody = document.createElement('div');
@@ -88,13 +99,15 @@ function preparePizzaCard(pizza){
   pTag.className = 'card-text';
   pTag.innerText = pizza.desc;
   const button = document.createElement('button');
+  button.setAttribute('product-id',pizza.id);
+  button.addEventListener('click',addpizzaToCart);
   button.innerText = 'Add to Cart';
   button.className = 'btn btn-primary';
   cardBody.appendChild(h5);
   cardBody.appendChild(pTag);
   cardBody.appendChild(button);
   outputDiv.appendChild(colDiv);
-
+  return outputDiv;
 
 }
 

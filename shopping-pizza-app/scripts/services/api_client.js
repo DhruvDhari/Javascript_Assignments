@@ -6,6 +6,7 @@ async function makeNetworkCall(){
     try{
         const response =await fetch(url);
         const object =await response.json();
+      
         return object;
     }
     catch(err){

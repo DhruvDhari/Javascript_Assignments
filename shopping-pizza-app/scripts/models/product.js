@@ -11,6 +11,7 @@ class Products{
         this.desc=desc;
         this.price=price;
         this.url=url;
+        this.isAddedInCart =false;
 
     }
 }
