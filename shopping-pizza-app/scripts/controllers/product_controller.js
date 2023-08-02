@@ -13,6 +13,15 @@
 
 import productOperations from "../services/product_operations.js";
 
+// const productOperations={
+//   pizzas:[],
+//   carts:[],
+//   addToCart(product){
+//     this.carts.push(product);
+//   },
+
+// }
+
 // async function loadPizzas(){
 //     const pizza =await productOperations.loadProducts();
 //     console.log('Pizzas are ',pizza);
@@ -26,7 +35,7 @@ import productOperations from "../services/product_operations.js";
 //         const col=document.createElement('div');
 //         col.classList.add('col-4');
 //         col.innerHTML=`
-//         <div class="card" >
+//         <div class="card m-1" >
 //         <img src="${pizza[i].url}" alt="">
 //           <div class="card-body">
 //             <h5 class="card-title">${pizza[i].name}</h5>
@@ -65,7 +74,8 @@ function preparePizzaCard(pizza){
   cardDiv.style = "width: 18rem;";
   colDiv.appendChild(cardDiv);
   const img = document.createElement('img');
-  img.src = pizza.url;
+  img.src = pizza.price;
+  console.log("url :",pizza.price);
   img.className = 'card-img-top';
   cardDiv.appendChild(img);
   const cardBody = document.createElement('div');
