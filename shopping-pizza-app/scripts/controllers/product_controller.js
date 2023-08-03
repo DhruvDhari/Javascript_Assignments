@@ -13,26 +13,26 @@
 
 import productOperations from "../services/product_operations.js";
 
-function addpizzaToCart(){
-  const pizzaId=this.getAttribute('product-id');
-  console.log('current button clicked ',pizzaId);
-  const pizza =productOperations.searchProducts(pizzaId);
-  console.log("pizza tumne chuna h woh :",pizza);
-  pizza.isAddedInCart= !pizza.isAddedInCart;
-  if(pizza.isAddedInCart){
-    this.className='btn btn-danger';
-    this.innerText='Remove from Cart';
-    productOperations.addToCart(pizza);
-  }
-  else{
-    this.className='btn btn-primary';
-    this.innerText="Add in Cart";
-    productOperations.removeFromCart(pizza);
+// function addpizzaToCart(){
+//   const pizzaId=this.getAttribute('product-id');
+//   console.log('current button clicked ',pizzaId);
+//   const pizza =productOperations.searchProducts(pizzaId);
+//   console.log("pizza tumne chuna h woh :",pizza);
+//   pizza.isAddedInCart= !pizza.isAddedInCart;
+//   if(pizza.isAddedInCart){
+//     this.className='btn btn-danger';
+//     this.innerText='Remove from Cart';
+//     productOperations.addToCart(pizza);
+//   }
+//   else{
+//     this.className='btn btn-primary';
+//     this.innerText="Add in Cart";
+//     productOperations.removeFromCart(pizza);
 
-  }
-  // printCart();
+//   }
+//   // printCart();
   
-}
+// }
 
 // async function loadPizzas(){
 //     const pizza =await productOperations.loadProducts();
@@ -70,19 +70,41 @@ function addpizzaToCart(){
 
 async function loadPizzas(){
   const pizzas = await productOperations.loadProducts();
-  console.log('Pizzas are ', pizzas);
+  console.log('products loaded : ', pizzas);
   for(let pizza of pizzas){
       preparePizzaCard(pizza);
   }
 }
 loadPizzas();
 
+function addToCart(){
+  // this - keyword (Current calling object reference)
+  console.log('Add to Cart Called...', this);
+  const currentButton = this;
+  const pizzaId = currentButton.getAttribute('product-id');
+  console.log('Pizza Id is aaaa ', pizzaId);
+  productOperations.search(pizzaId);
+  printBasket();
+}
+
+function printBasket(){
+  const cartProducts = productOperations.getProductsInCart();
+  const basket = document.querySelector('#basket');
+  basket.innerHTML = '';
+  for(let product of cartProducts){
+      const li = document.createElement('li');
+      li.innerText = `${product.name} ${product.price}`;
+      basket.appendChild(li);
+  }
+}
+
+
 function preparePizzaCard(pizza){
   const outputDiv = document.querySelector('#output');
   const colDiv = document.createElement('div');
-  colDiv.className = 'col-4';
+  colDiv.className = 'col-4 wrap';
   const cardDiv = document.createElement('div');
-  cardDiv.classList = 'card m-2';
+  cardDiv.classList = 'card  ';
   cardDiv.style = "width: 18rem;";
   colDiv.appendChild(cardDiv);
   const img = document.createElement('img');
@@ -100,7 +122,8 @@ function preparePizzaCard(pizza){
   pTag.innerText = pizza.desc;
   const button = document.createElement('button');
   button.setAttribute('product-id',pizza.id);
-  button.addEventListener('click',addpizzaToCart);
+  button.addEventListener('click',addToCart);
+
   button.innerText = 'Add to Cart';
   button.className = 'btn btn-primary';
   cardBody.appendChild(h5);

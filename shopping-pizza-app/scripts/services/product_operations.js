@@ -5,13 +5,18 @@ import Product from "../models/product.js";
 import makeNetworkCall from "./api_client.js";
 
 const productOperations={
-    pizzas:[],
-    carts:[],
-    addToCart(product){
-        this.carts.push(product);
+    products:[], // Key:value
+    search(pizzaId){
+        console.log('checkur :',this.products);
+        const product = this.products.
+        find(currentProduct=>currentProduct.id==pizzaId);
+        console.log('Product Found ', product);
+        product.isAddedInCart = true;
+        console.log('Array ', this.products);
     },
-    removeFromCart(product){
-        this.cart=this.carts.filter(pizza=>pizza.id !== product.id);
+    getProductsInCart(){
+        const productInBasket = this.products.filter(product=>product.isAddedInCart);
+        return productInBasket;
     },
     async loadProducts(){
         const pizza =await makeNetworkCall;
@@ -22,17 +27,18 @@ const productOperations={
 
             return currentPizza;
         })
-       this.pizzas=productsArray;
-        console.log('Product Array ',productsArray);
+        console.log("******Product Array",productsArray);
+       this.products=productsArray;
+        // console.log("this.pro",this.products)
         return productsArray;
     },
     sortProducts(){
 
     },
-    searchProducts(id){
-        console.log('search pizza :',this.pizzas.length,'Id ',id);
-        const searched=this.pizzas.filter(pizza=>pizza['id']===id);
-        return searched;
+    searchProducts(){
+        // console.log('search pizza :',this.pizzas.length,'Id ',id);
+        // const searched=this.pizzas.filter(pizza=>pizza['id']===id);
+        // return searched;
     }
 
 
