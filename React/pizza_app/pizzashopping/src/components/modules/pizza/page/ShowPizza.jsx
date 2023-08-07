@@ -1,11 +1,11 @@
 import React from 'react'
-import PizzzaCard from '../components/PizzzaCard'
+import PizzaCard from '../components/PizzaCard'
 
 const ShowPizza = () => {
   return (
     <>
       <div>Show all Pizzas here</div>
-    <PizzzaCard/>
+      <PizzaCard/>
     </>
   
     

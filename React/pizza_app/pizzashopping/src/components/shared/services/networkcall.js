@@ -1,4 +1,4 @@
-import {url} from "../utils/constant.js";
+import {url} from "../utils/constant";
 
 const networkOperation={
     async getData(){

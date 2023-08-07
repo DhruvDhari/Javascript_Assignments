@@ -1,10 +1,10 @@
 import React from 'react'
 import networkOperation from '../../../shared/services/networkcall'
 
-const PizzzaCard = () => {
+const PizzaCard = () => {
 
     const getPizza=async()=>{
-        const allPizzas =await networkOperation.getData(url);
+        const allPizzas =await networkOperation.getData();
         console.log(allPizzas);
     }
 
@@ -14,4 +14,4 @@ const PizzzaCard = () => {
   )
 }
 
-export default PizzzaCard
+export default PizzaCard
