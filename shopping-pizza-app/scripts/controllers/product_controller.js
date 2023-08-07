@@ -69,6 +69,7 @@ import productOperations from "../services/product_operations.js";
 
 
 async function loadPizzas(){
+  const total =0;
   const pizzas = await productOperations.loadProducts();
   console.log('products loaded : ', pizzas);
   for(let pizza of pizzas){
@@ -95,6 +96,9 @@ function printBasket(){
       const li = document.createElement('li');
       li.innerText = `${product.name} ${product.price}`;
       basket.appendChild(li);
+      // this.total+=product.price;
+      // const bill=document.getElementById("bill").innerHTML=`Your Bill is : ${this.total}$`;
+
   }
 }
 
