@@ -1,11 +1,11 @@
 // import logo from './logo.svg';
 import './App.css';
-import Container from '@mui/material/Container';
+import { QuestionPage } from './modules/ide/pages/questionpage';
 
 function App() {
   return (
     <>
-    <Container ></Container>
+    <QuestionPage/>
     </>
   );
 }
