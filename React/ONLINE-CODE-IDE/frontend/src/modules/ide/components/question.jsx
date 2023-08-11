@@ -1,17 +1,35 @@
-import React from 'react'
-import { Typography,Box,Toolbar} from '@mui/material'
+import React, { useState } from 'react'
+import { apiClient } from '../../../shared/services/api-clients'
+// import { Typography,Box,Toolbar} from '@mui/material'
 
-const question = () => {
+
+
+const Question = () => {
+  const [data,setdata]=useState(null);
+  const getQuestion= async()=>{
+    const response= await apiClient.get(process.env.REACT_APP_QUESTION_URL);
+    console.log(response);
+    setdata(response)
+   }
+   window.onload=()=>{
+    getQuestion()
+  }
+   
+
+
+   
   return (
    <>
-   <Box>
-    <Toolbar sx={{height:100}}/>
-    <Typography variant='h3'>Question Name</Typography>
-    <Typography variant='p'>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quod itaque earum nostrum illo perspiciatis natus aperiam, blanditiis fuga laudantium tempora?</Typography>
-   </Box>
-   
+  <div >
+    {/* <button >Click to show data</button> */}
+    {data==null?"Loading... ":<h2>{data.question}</h2>}
+    
+  </div>
+ 
+  
+  
    </>
   )
 }
 
-export default question
+export default Question

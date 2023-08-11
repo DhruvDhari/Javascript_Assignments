@@ -1,8 +1,8 @@
 import Container from '@mui/material/Container';
 import { Header } from '../../../shared/components/Header';
 import Grid from '@mui/material/Grid';
-import Question from '../components/question';
-import Ide from '../components/ide'
+import Question from '../components/Question';
+import {Ide} from '../components/Ide'
 
 export const QuestionPage = ()=>{
     return ( <Container >
@@ -13,8 +13,6 @@ export const QuestionPage = ()=>{
         </Grid>
         <Grid item xs={6}>
             <Ide/>
-
-            <h3>Write Code</h3>
         </Grid>
         </Grid>
     </Container>)
