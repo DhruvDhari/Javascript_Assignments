@@ -1,2 +1,4 @@
 Hello man
 this has some sample data
+
+npm= non package manager
