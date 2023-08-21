@@ -1,6 +1,13 @@
 export const userController={
     login(request,response){
-        response.json({message:'login'});
+        const userInfo=request.body;
+        // console.log('Request Body is ',body);
+        if(userInfo.userid==userInfo.passward){
+            response.json({message:'Welcome '+userInfo.userid});
+        }else{
+            response.json({message:'Invalid Userid or Password'});
+        }
+        
     },
     register(request,response){
         response.json({message:'register'});
