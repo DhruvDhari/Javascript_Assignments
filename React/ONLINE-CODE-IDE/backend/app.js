@@ -35,9 +35,17 @@
 
 // const express =require('express'); common.js way to use require to import
 
-import express from 'express';//type :module in json file
+import express, { response } from 'express';//type :module in json file
+import { userRoutes } from './routes/user-routes.js';
+import { ideRoutes } from './routes/ide-routes.js';
 
 const app=express();
+app.use('/',userRoutes);
+// app.use('/',ideRoutes);
+// last middleware 404
+app.use((request,response,next)=>{
+    response.json({message:'Invalid URL'});
+})
 
 const server=app.listen(1234,(err)=>{
     if(err){
