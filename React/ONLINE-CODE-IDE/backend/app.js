@@ -33,3 +33,16 @@
     
 // })
 
+// const express =require('express'); common.js way to use require to import
+
+import express from 'express';//type :module in json file
+
+const app=express();
+
+const server=app.listen(1234,(err)=>{
+    if(err){
+        console.log('server crashed',err);
+    }else{
+        console.log('server up and running',server.address().port);
+    }
+})
