@@ -2,13 +2,35 @@ import { UserModel } from "../db/models/user-schema.js";
 import { hashing } from "../utils/encrypt.js";
 
 export const userController={
-    login(request,response){
+    async login(request,response){
         const userInfo=request.body;
-        // console.log('Request Body is ',body);
-        if(userInfo.userid==userInfo.password){
-            response.json({message:'Welcome '+userInfo.userid});
+        console.log('Request Body is ',userInfo);
+        // if(userInfo.userid==userInfo.password){
+        //     response.json({message:'Welcome '+userInfo.userid});
+        // }else{
+        //     response.json({message:'Invalid Userid or Password'});
+        // }
+
+        const doc=await UserModel.findOne({'email':userInfo.email}).exec();
+        console.log('doc is',doc);
+        
+        if(doc && doc._id){
+            const plainPassword = userInfo.password;
+            const dbPassword=doc.password;
+            if(hashing.matchPassword(plainPassword,dbPassword)){
+                response.json({
+                    message:`WELCOME ${doc.name}`
+                })
+            }else{
+                response.json({
+                    message:"Invalid UserId or Password"
+                })
+            }
+        
         }else{
-            response.json({message:'Invalid Userid or Password'});
+            response.json({
+                message:"Invalid UserId or Password"
+            })
         }
         
     },
