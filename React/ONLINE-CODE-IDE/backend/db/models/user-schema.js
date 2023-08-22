@@ -1,4 +1,5 @@
-import mongoose, { SchemaTypes } from "mongoose";
+import { SchemaTypes } from "mongoose";
+import mongoose from "../connection.js";
 const Schema=mongoose.Schema;
 
 const userSchema= new Schema({

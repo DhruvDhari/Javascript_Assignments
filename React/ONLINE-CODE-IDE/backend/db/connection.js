@@ -8,3 +8,5 @@ promise.then(data=>{
     console.log('Error in Connecting to DB ',err);
 }
 )
+
+export default mongoose;
