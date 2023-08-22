@@ -1,11 +1,11 @@
-import mongoose, { SchemaType } from "mongoose";
+import mongoose, { SchemaTypes } from "mongoose";
 const Schema=mongoose.Schema;
 
 const userSchema= new Schema({
-    'email':{type:Schema.Types.String,required:true,unique:true},
-    'password':{type:SchemaType.String,required:true,minLength:8,maxLength:25},
-    'name':{type:SchemaType.String,required:true},
-    'phone':{type:SchemaType.string}
+    'email':{type:SchemaTypes.String,required:true,unique:true},
+    'password':{type:SchemaTypes.String,required:true,minLength:8,maxLength:25},
+    'name':{type:SchemaTypes.String,required:true},
+    'phone':{type:SchemaTypes.String}
 });
 
 export const UserModel = mongoose.model('users',userSchema);
