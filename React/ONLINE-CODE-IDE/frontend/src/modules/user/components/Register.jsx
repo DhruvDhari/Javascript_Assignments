@@ -1,10 +1,11 @@
-import React, { useRef } from 'react'
+import React, { useRef, useState } from 'react'
 import TextField from '@mui/material/TextField';
 import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import { apiClient } from '../../../shared/services/api-client';
 
 export const Register = () => {
+    const [message,setMessage] = useState('');
     const emailRef = useRef();
     const pwdRef = useRef();
     const nameRef = useRef();
@@ -18,15 +19,19 @@ export const Register = () => {
         }
         try{
             const response= await apiClient.post(process.env.REACT_APP_REGISTER,userInfo);
+
+            setMessage(response.data.message);
             console.log('response is :',response);
             console.log('userinfo :',userInfo);
         }catch(err){
+            setMessage("Registration Failed");
             console.log("error is :",err);
         }
       
     }
   return (
     <Container>
+        <p>{message}</p>
         <TextField inputRef={emailRef} id="outlined-basic" label="Email" variant="outlined" />
         <TextField inputRef={pwdRef} id="outlined-basic" type='password' label="Password" variant="outlined" />
         <TextField inputRef={nameRef} id="outlined-basic" label="Name" variant="outlined" />
