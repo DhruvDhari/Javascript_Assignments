@@ -38,8 +38,9 @@
 import express, { response } from 'express';//type :module in json file
 import { userRoutes } from './routes/user-routes.js';
 import { ideRoutes } from './routes/ide-routes.js';
-
+import cors from 'cors';
 const app=express();
+app.use(cors());
 app.use(express.json());
 app.use('/',userRoutes);
 // app.use('/',ideRoutes);
