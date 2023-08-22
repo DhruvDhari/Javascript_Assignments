@@ -1,10 +1,11 @@
 import { UserModel } from "../db/models/user-schema.js";
+import { hashing } from "../utils/encrypt.js";
 
 export const userController={
     login(request,response){
         const userInfo=request.body;
         // console.log('Request Body is ',body);
-        if(userInfo.userid==userInfo.passward){
+        if(userInfo.userid==userInfo.password){
             response.json({message:'Welcome '+userInfo.userid});
         }else{
             response.json({message:'Invalid Userid or Password'});
@@ -13,6 +14,7 @@ export const userController={
     },
     async register(request,response){
         const userInfo= request.body;
+        userInfo.password= hashing.passwordHash(userInfo.password);
         try{
             const doc=await UserModel.create(userInfo);
             if(doc&&doc._id){
